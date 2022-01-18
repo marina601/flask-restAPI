@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Marina Shalneva">
+  <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" as="style">
+  <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" as="style">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block title %}
+  <title>Flask RestAPI</title>
+  {% endblock %}
+  <!--Favicon Icons-->
+</head>
+<body>
+<!--Preloader-->
+  <div class="preloader">
+    <div class="loader">
+      <div class="sk-chase">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+      </div>
+    </div>
+    </div>
+  <header>
+
+  </header>
+  <main class="container">
+    <!-- Flash Messages-->
+  {% block content %}
+  {% endblock %}
+
+  </main>
+  <!--Footer-->
+  <footer class="page-footer">
+    
+    
+    <!-- Modal Structure -->
+    <!--Terms and Conditions-->
+   
+    <!--Copyrights-->
+    
+  </footer>
+  <!--Script-->
+  
+  <script  src="{{ url_for('static', filename='js/script.js') }}"></script>
+  {% block scripts %}
+  {% endblock %}
+</body>
+
+</html>
