@@ -14,6 +14,7 @@ from pymongo.errors import ConnectionFailure
 import datetime as dt
 from bson.json_util import dumps
 from bson.objectid import ObjectId
+from flask_cors import CORS, cross_origin
 
 
 if os.path.exists("env.py"):
@@ -21,24 +22,31 @@ if os.path.exists("env.py"):
 
 
 app = Flask(__name__)
-
+cors = CORS(app)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-
+app.config['CORS_Headers'] = 'Content-Type'
 mongo = PyMongo(app)
 
 
 # retrive all date 
 @app.route('/')
+@cross_origin()
+def home():
+    return render_template('index.html')
+
+
+@app.route('/posts')
+@cross_origin()
 def posts():
     posts = mongo.db.posts.find()
     resp = dumps(posts)
     return resp
 
 
-# get a single post
+# # get a single post
 @app.route('/<post_id>', methods=["GET"])
 def getPost(post_id):
     post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
