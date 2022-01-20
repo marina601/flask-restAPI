@@ -24,3 +24,5 @@
 ### DELETE
 
 - https://blog-post-rest-api.herokuapp.com//delete/<post_id> - delete a post by id
+
+##### Api Endpoints have been tested using Postman
