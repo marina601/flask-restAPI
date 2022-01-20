@@ -67,7 +67,8 @@ function postData (e) {
         dataArr.push(data);
         // call show post function with update content
         showPosts(dataArr);
-        location.reload().alert('New Post Created!')
+        location.reload()
+        alert('New Post Created!')
     })
 }
 
@@ -82,14 +83,12 @@ const postList = document.getElementById('posts');
 
 postList.addEventListener('click', (e) => {
     //target the id of the individual element
-    //console.log(e.target.id);
     e.preventDefault();
     let delBtn = e.target.id == 'delete-post';
     let editBtn = e.target.id == 'edit-post';
     let viewBtn = e.target.id == 'view-post';
 
     let id = e.target.parentElement.dataset.id;
-    console.log(id)
     
     // Delete Request
     if(delBtn) {
@@ -109,10 +108,6 @@ postList.addEventListener('click', (e) => {
         let content = parent.querySelector('.card-content').textContent;
         let creator = parent.querySelector('.card-author').textContent;
         let imageUrl = parent.querySelector('.card-image').src;
-
-        console.log(imageUrl);
-
-        
 
         form_title.value = title;
         form_content.value = content;
