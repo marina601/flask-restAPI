@@ -1,6 +1,6 @@
 # flask-restAPI
 
-- You can view the deployed site ![here](https://blog-post-rest-api.herokuapp.com/)
+- You can view the deployed site [here](https://blog-post-rest-api.herokuapp.com/)
 
 - This is a blog post app using Flask to build a RestAPI CRUD operation
 - MongoDB is used to store the data in the database
@@ -19,10 +19,10 @@
 - https://blog-post-rest-api.herokuapp.com/add_post - add a post to the databasee 
 ### UPDATE
 
-- https://blog-post-rest-api.herokuapp.com//update/<post_id> - update a post by id
+- https://blog-post-rest-api.herokuapp.com/update/<post_id> - update a post by id
 
 ### DELETE
 
-- https://blog-post-rest-api.herokuapp.com//delete/<post_id> - delete a post by id
+- https://blog-post-rest-api.herokuapp.com/delete/<post_id> - delete a post by id
 
 ##### Api Endpoints have been tested using Postman
