@@ -1,16 +1,11 @@
 import os
 from urllib import response
 from flask import (
-    Flask, flash, render_template, redirect,
-    request, session, url_for, make_response, jsonify)
+    Flask, render_template,
+    request, jsonify)
 from datetime import date, datetime
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_sslify import SSLify
-from flask_mongoengine import MongoEngine
-from pymongo import MongoClient
-from pymongo.errors import ConnectionFailure
 import datetime as dt
 from bson.json_util import dumps
 from bson.objectid import ObjectId
