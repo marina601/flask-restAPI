@@ -47,7 +47,7 @@ function postData (e) {
     let title = document.getElementById('title').value;
     let imageUrl = document.getElementById('imageUrl').value;
     let content = document.getElementById('content').value;
-    let createdAt = document.getElementById('createdAt').value;
+    
 
     fetch(url + '/add_post', {
         method : 'POST',
@@ -59,7 +59,6 @@ function postData (e) {
             'title': title,
             'imageUrl': imageUrl,
             'content': content,
-            'createdAt': createdAt
         })
     })
     .then((response) => response.json())
@@ -68,8 +67,7 @@ function postData (e) {
         dataArr.push(data);
         // call show post function with update content
         showPosts(dataArr);
-        location.reload()
-        alert('New Post Created!')
+        location.reload().alert('New Post Created!')
     })
 }
 
