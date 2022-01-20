@@ -18,6 +18,7 @@ function showPosts() {
                   <p class="card-text card-content">${post.content}</p>
                   <span class='d-inline p-2'>Date:</span>
                   <p class="card-text text-muted d-inline p-2">${post.createdAt}</p>
+                  <br>
                   <span class='d-inline p-2'>Author:</span>
                   <p class='card-text text-muted card-author d-inline'>${post.creator}</p>
                   <hr>
@@ -166,6 +167,7 @@ postList.addEventListener('click', (e) => {
                             <p class="card-text">${data.content}</p>
                             <span class='d-inline p-2'>Updated on:</span>
                             <p class="card-text text-muted d-inline p-2">${data.createdAt}</p>
+                            <br>
                             <span class='d-inline p-2'>Author:</span>
                             <p class='card-text text-muted card-author d-inline'>${data.creator}</p>
                             <hr>
@@ -180,3 +182,10 @@ postList.addEventListener('click', (e) => {
     });
     }
 })
+
+
+// Sets copyright date in footer to current year
+function getCurrentYear() {
+    return new Date().getFullYear();
+}
+document.getElementById("copyright-year").innerHTML = getCurrentYear();
