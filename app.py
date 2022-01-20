@@ -10,6 +10,7 @@ import datetime as dt
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask_cors import CORS, cross_origin
+from datetime import date
 
 
 if os.path.exists("env.py"):
@@ -52,16 +53,20 @@ def getPost(post_id):
 # add a new post
 @app.route('/add_post', methods=['POST'])
 def add_post():
+    a_datetime = datetime.now()
+    formatted_datetime = a_datetime.isoformat()
+    json_datetime = dumps(formatted_datetime)
     _json = request.json
     creator = _json['creator'],
     title = _json['title'],
-    imageUrl = _json['imageUrl']
-    content = _json['content']
+    imageUrl = _json['imageUrl'],
+    content = _json['content'],
+    createdAt = json_datetime
     # validate the received values
     if request.method == 'POST':
         post = mongo.db.posts.insert_one(
             {'title': title, 'imageUrl': imageUrl, 'content': content,
-             'creator': creator, 'createdAt': dt.datetime.now()})
+             'creator': creator, 'createdAt': createdAt})
         resp = jsonify('Post added successfully!')
         resp.status_code = 200
         return resp
@@ -70,16 +75,21 @@ def add_post():
 # update post
 @app.route('/update/<post_id>', methods=['PUT'])
 def update_post(post_id):
+    a_datetime = datetime.now()
+    formatted_datetime = a_datetime.isoformat()
+    json_datetime = dumps(formatted_datetime)
     _json = request.json
     creator = _json['creator']
     content = _json['content']
     title = _json['title']
     imageUrl = _json['imageUrl']
+    updatedAt = json_datetime
 # validate the received values
     if request.method == 'PUT':
         mongo.db.posts.update_one({'_id': ObjectId(post_id)}, {'$set': {
                                    'creator': creator, 'title': title,
-                                   'imageUrl': imageUrl, 'content': content}})
+                                   'imageUrl': imageUrl, 'content': content,
+                                   'updatedAt': updatedAt}})
         resp = jsonify('Post update successfully')
         resp.status = 200
         return resp
