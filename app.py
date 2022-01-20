@@ -11,7 +11,7 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask_cors import CORS, cross_origin
 from datetime import date
-
+from app import app
 
 if os.path.exists("env.py"):
     import env
