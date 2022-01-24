@@ -1,6 +1,6 @@
 // base url
-const url = 'https://blog-post-rest-api.herokuapp.com/' ;
-//const url = 'http://localhost:4444/';
+//const url = 'https://blog-post-rest-api.herokuapp.com/' ;
+const url = 'http://localhost:4444/';
 
 // GET
 // retrive all posts
@@ -49,28 +49,32 @@ function postData (e) {
     let imageUrl = document.getElementById('imageUrl').value;
     let content = document.getElementById('content').value;
     
-
-    fetch(url + '/add_post', {
-        method : 'POST',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify({
-            'creator': creator,
-            'title': title,
-            'imageUrl': imageUrl,
-            'content': content,
+    if(creator == '' || title == '' || imageUrl == '' || content == '') {
+        alert('Please fill in all the required fields!')
+    } else {
+        fetch(url + '/add_post', {
+            method : 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                'creator': creator,
+                'title': title,
+                'imageUrl': imageUrl,
+                'content': content,
+            })
         })
-    })
-    .then((response) => response.json())
-    .then((data) => {
-        const dataArr = [];
-        dataArr.push(data);
-        // call show post function with update content
-        showPosts(dataArr);
-        location.reload()
-        alert('New Post Created!')
-    })
+        .then((response) => response.json())
+        .then((data) => {
+            const dataArr = [];
+            dataArr.push(data);
+            // call show post function with update content
+            showPosts(dataArr);
+            location.reload()
+            alert('New Post Created!')
+        })
+    }
+
 }
 
 //get the form elements
@@ -121,7 +125,7 @@ postList.addEventListener('click', (e) => {
     // Method FETCH
     editButton.addEventListener('click', (e) => {
         e.preventDefault();
-
+        // form validation
         if(from_creator.value == '' || form_title.value == '' || form_imageUrl.value == '' || form_content.value == '') {
             alert('Please fill in all the required fields!')
         } else {
