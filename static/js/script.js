@@ -1,5 +1,6 @@
 // base url
 const url = 'https://blog-post-rest-api.herokuapp.com/' ;
+//const url = 'http://localhost:4444/';
 
 // GET
 // retrive all posts
@@ -17,7 +18,7 @@ function showPosts() {
                   <h3 class="card-title">${post.title}</h3>
                   <p class="card-text card-content">${post.content}</p>
                   <span class='d-inline p-2'>Date:</span>
-                  <p class="card-text text-muted d-inline p-2">${post.createdAt}</p>
+                  <p class="card-text text-muted d-inline p-2">${post.createdAt.slice(0,11).replace('"', '').split("-").reverse().join("-")}</p>
                   <br>
                   <span class='d-inline p-2'>Author:</span>
                   <p class='card-text text-muted card-author d-inline'>${post.creator}</p>
@@ -159,7 +160,7 @@ postList.addEventListener('click', (e) => {
                             <h3 class="card-title">${data.title}</h3>
                             <p class="card-text">${data.content}</p>
                             <span class='d-inline p-2'>Updated on:</span>
-                            <p class="card-text text-muted d-inline p-2">${data.createdAt}</p>
+                            <p class="card-text text-muted d-inline p-2">${post.createdAt.slice(0,11).replace('"', '').split("-").reverse().join("-")}</p>
                             <br>
                             <span class='d-inline p-2'>Author:</span>
                             <p class='card-text text-muted card-author d-inline'>${data.creator}</p>
