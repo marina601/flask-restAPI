@@ -15,7 +15,7 @@ function showPosts() {
               <div class="card bg-light mb-3">
                 <div class="card-body" data-id=${post._id.$oid}>
                   <img src="${post.imageUrl}" class="card-img-top card-image" id='card-image' alt="${post.title}">
-                  <h3 class="card-title">${post.title}</h3>
+                  <h2 class="card-title">${post.title}</h2>
                   <p class="card-text card-content">${post.content}</p>
                   <span class='d-inline p-2'>Date:</span>
                   <p class="card-text text-muted d-inline p-2">${post.createdAt.slice(0,11).replace('"', '').split("-").reverse().join("-")}</p>
@@ -113,7 +113,7 @@ postList.addEventListener('click', (e) => {
         form_title.value = title;
         form_content.value = content;
         from_creator.value = creator;
-        form_imageUrl.value = imageUrl; 
+        form_imageUrl.value = imageUrl;
     }
 
     const editButton = document.querySelector('.edit');
@@ -121,21 +121,27 @@ postList.addEventListener('click', (e) => {
     // Method FETCH
     editButton.addEventListener('click', (e) => {
         e.preventDefault();
-        fetch(url + '/update/' + id, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({'creator': creator,
-                'title': form_title.value,
-                'imageUrl': form_imageUrl.value,
-                'content': form_content.value ,
-                'creator': from_creator.value,
+
+        if(from_creator.value == '' || form_title.value == '' || form_imageUrl.value == '' || form_content.value == '') {
+            alert('Please fill in all the required fields!')
+        } else {
+            fetch(url + '/update/' + id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    'title': form_title.value,
+                    'imageUrl': form_imageUrl.value,
+                    'content': form_content.value ,
+                    'creator': from_creator.value,
+                })
             })
-        })
-          .then(res => res.json())
-          .then(() =>  location.reload())
-          alert('Post updated!')
+              .then(res => res.json())
+              .then(() =>  location.reload())
+              alert('Post updated!')
+
+        }
     })
 
     //GET
@@ -157,10 +163,10 @@ postList.addEventListener('click', (e) => {
                    <div class="card" style="width: 100%;">
                         <img src="${data.imageUrl}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h3 class="card-title">${data.title}</h3>
+                            <h2 class="card-title">${data.title}</h2>
                             <p class="card-text">${data.content}</p>
                             <span class='d-inline p-2'>Updated on:</span>
-                            <p class="card-text text-muted d-inline p-2">${post.createdAt.slice(0,11).replace('"', '').split("-").reverse().join("-")}</p>
+                            <p class="card-text text-muted d-inline p-2">${data.createdAt.slice(0,11).replace('"', '').split("-").reverse().join("-")}</p>
                             <br>
                             <span class='d-inline p-2'>Author:</span>
                             <p class='card-text text-muted card-author d-inline'>${data.creator}</p>
