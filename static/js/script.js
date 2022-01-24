@@ -1,6 +1,6 @@
 // base url
-//const url = 'https://blog-post-rest-api.herokuapp.com/' ;
-const url = 'http://localhost:4444/';
+const url = 'https://blog-post-rest-api.herokuapp.com/' ;
+//const url = 'http://localhost:4444/';
 
 // GET
 // retrive all posts
