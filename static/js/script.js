@@ -97,12 +97,17 @@ postList.addEventListener('click', (e) => {
     
     // Delete Request
     if(delBtn) {
-        fetch(url + '/delete/' + id, {
-            method: 'DELETE',
-        })
-          .then(res => res.json())
-          .then(() => location.reload())
-          alert('Post deleted successfully!')
+        // Set up the confirmation 
+        let result = confirm('Are you sure you want to delete this post?')
+        if (result == true) {
+            fetch(url + '/delete/' + id, {
+                method: 'DELETE',
+            })
+              .then(res => res.json())
+              .then(() => location.reload())
+              alert('Post deleted successfully!')
+        } 
+        
     }  
     
     //PUT Request
